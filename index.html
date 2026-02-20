@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Banquet Fellowship</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #1a0010;
+            --bg-mid: #3d0824;
+            --rose-gold: #d4869a;
+            --blush: #fff0f3;
+            --crimson: #8b1a3a;
+            --soft-pink: #f7c5d0;
+            --card-right: #fffafb;
+            --text-dark: #2a0a14;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ── Background with radial glow ── */
+        body {
+            background: radial-gradient(ellipse at 30% 50%, #4a0d2a 0%, var(--bg-deep) 70%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cormorant Garamond', serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ── Floating Hearts ── */
+        .hearts-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -60px;
+            font-size: 1.2rem;
+            animation: floatUp linear infinite;
+            opacity: 0;
+            color: rgba(212, 134, 154, 0.25);
+            user-select: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(-15deg) scale(0.8);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(15deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* ── The Main Card ── */
+        .luxury-card {
+            display: flex;
+            width: 920px;
+            height: 560px;
+            position: relative;
+            z-index: 1;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(212, 134, 154, 0.3),
+                0 30px 70px rgba(0, 0, 0, 0.6),
+                0 0 60px rgba(139, 26, 58, 0.3);
+        }
+
+        /* ── LEFT PANEL ── */
+        .card-visual {
+            width: 42%;
+            background: linear-gradient(160deg, #6b1535 0%, #3a0a1e 50%, #1f0510 100%);
+            padding: 45px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--soft-pink);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative inner frame */
+        .card-visual::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            bottom: 18px;
+            left: 18px;
+            right: 18px;
+            border: 1px solid rgba(212, 134, 154, 0.25);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        /* Corner hearts decoration */
+        .card-visual::after {
+            content: '♥';
+            position: absolute;
+            top: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: rgba(212, 134, 154, 0.5);
+            letter-spacing: 12px;
+        }
+
+        /* Bottom corner hearts */
+        .corner-hearts {
+            position: absolute;
+            bottom: 26px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: rgba(212, 134, 154, 0.5);
+            letter-spacing: 12px;
+        }
+
+        .logo {
+            width: 90px;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 0 12px rgba(212, 134, 154, 0.4));
+        }
+
+        /* Big decorative heart above title */
+        .big-heart {
+            font-size: 2rem;
+            color: var(--rose-gold);
+            margin-bottom: 8px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.12);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.65rem;
+            letter-spacing: 2px;
+            line-height: 1.25;
+            color: #fde8ee;
+            text-shadow: 0 0 20px rgba(212, 134, 154, 0.4);
+        }
+
+        .subtitle {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.45rem;
+            margin-top: 10px;
+            color: var(--rose-gold);
+            opacity: 0.95;
+            margin-bottom: 24px;
+        }
+
+        .details {
+            font-family: 'Cinzel', serif;
+            font-size: 0.78rem;
+            line-height: 2.1;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(212, 134, 154, 0.35);
+            border-bottom: 1px solid rgba(212, 134, 154, 0.35);
+            padding: 14px 0;
+            width: 100%;
+            color: var(--soft-pink);
+        }
+
+        /* ── RIGHT PANEL ── */
+        .card-form {
+            width: 58%;
+            background: var(--card-right);
+            padding: 35px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Subtle pink tint overlay on right side */
+        .card-form::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(247, 197, 208, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .form-header {
+            font-family: 'Cinzel', serif;
+            color: var(--crimson);
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 22px;
+            letter-spacing: 3px;
+        }
+
+        /* Decorative divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(139, 26, 58, 0.3), transparent);
+        }
+
+        .divider span {
+            color: var(--rose-gold);
+            font-size: 0.85rem;
+        }
+
+        /* Input fields */
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            border: none;
+            border-bottom: 1.5px solid #e8c4ce;
+            background: transparent;
+            padding: 9px 0 9px 2px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.3s;
+            appearance: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-bottom: 1.5px solid var(--crimson);
+        }
+
+        /* Animated underline accent */
+        .input-group::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--crimson);
+            transition: width 0.35s ease;
+        }
+
+        .input-group:focus-within::after {
+            width: 100%;
+        }
+
+        /* Custom select arrow */
+        .select-wrap {
+            position: relative;
+        }
+
+        .select-wrap::after {
+            content: '♥';
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--rose-gold);
+            font-size: 0.75rem;
+            pointer-events: none;
+        }
+
+        ::placeholder {
+            color: #b08090;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        button {
+            margin-top: 8px;
+            background: linear-gradient(135deg, #a02040 0%, #6b1030 100%);
+            color: #ffe8ee;
+            border: none;
+            padding: 13px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.35s;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(139, 26, 58, 0.3);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #b02848 0%, #7a1535 100%);
+            box-shadow: 0 6px 25px rgba(139, 26, 58, 0.5);
+            transform: translateY(-1px);
+        }
+
+        button:hover::before {
+            opacity: 1;
+        }
+
+        #loading {
+            text-align: center;
+            font-size: 0.78rem;
+            font-style: italic;
+            color: var(--crimson);
+            margin-top: 8px;
+            display: none;
+            letter-spacing: 1px;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                align-items: flex-start;
+                padding: 20px 12px;
+            }
+
+            .luxury-card {
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+            }
+
+            .card-visual {
+                width: 100%;
+                padding: 35px 25px;
+            }
+
+            .card-form {
+                width: 100%;
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating hearts background -->
+    <div class="hearts-bg" id="heartsContainer"></div>
+
+    <div class="luxury-card">
+
+        <!-- LEFT: Visual Panel -->
+        <div class="card-visual">
+            <div class="big-heart">♥</div>
+            <img src="youth.png" alt="Logo" class="logo">
+            <h1>Youth<br>Banquet Fellowship</h1>
+            <p class="subtitle">Guard your heart</p>
+
+            <div class="details">
+                PILGRIMS BAPTIST CHURCH<br>
+                FEBRUARY 22 &nbsp;♥&nbsp; 1:30 PM
+            </div>
+
+            <span class="corner-hearts">♥ ♥ ♥</span>
+        </div>
+
+        <!-- RIGHT: Form Panel -->
+        <div class="card-form">
+            <div class="form-header">KINDLY REPLY</div>
+
+            <div class="divider"><span>♥</span></div>
+
+            <form name="submit-to-google-sheet">
+
+                <div class="input-group">
+                    <input type="text" name="Name" placeholder="Your Name" required autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="Email" placeholder="Email Address" required autocomplete="off">
+                </div>
+
+                <div class="input-group select-wrap">
+                    <select name="Attendance" required>
+                        <option value="" disabled selected>Will you attend?</option>
+                        <option value="Yes">Yes, I will attend</option>
+                        <option value="No">No, I cannot attend</option>
+                    </select>
+                </div>
+
+                <button type="submit">SEND RSVP &nbsp;♥</button>
+                <p id="loading">Sealing your response with love...</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ── Floating hearts generator ──
+        const container = document.getElementById('heartsContainer');
+        const heartChars = ['♥', '♡', '❤', '💕'];
+        const count = 18;
+
+        for (let i = 0; i < count; i++) {
+            const el = document.createElement('span');
+            el.classList.add('heart');
+            el.textContent = heartChars[Math.floor(Math.random() * heartChars.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.fontSize = (0.8 + Math.random() * 1.6) + 'rem';
+            el.style.animationDuration = (8 + Math.random() * 14) + 's';
+            el.style.animationDelay = (Math.random() * 12) + 's';
+            container.appendChild(el);
+        }
+
+        // ── Form submission ──
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzOk3-qqrZWyBkCssnsnFYurT-zynn6Lz6mJKAnY2F-vXUfSENmG3YG2DP9WCo84Aq2/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const loadingText = document.getElementById('loading');
+        const submitBtn = form.querySelector('button');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            loadingText.style.display = 'block';
+            submitBtn.style.opacity = '0.6';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(() => {
+                    loadingText.style.display = 'none';
+                    submitBtn.style.opacity = '1';
+                    alert('We have received your response. God Bless! ♥');
+                    form.reset();
+                })
+                .catch(error => {
+                    loadingText.style.display = 'none';
+                    submitBtn.style.opacity = '1';
+                    console.error('Error!', error.message);
+                    alert('Error sending. Please try again.');
+                });
+        });
+    </script>
+
+</body>
+
+</html>
